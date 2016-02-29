@@ -15,8 +15,7 @@ end
 
 defmodule Comment do
   use Ecto.Schema
-  require Commentable
-  Commentable.acts_as_comment
+  use Commentable, :acts_as_comment
 
   schema "abstract:comments" do
     comment_fields
@@ -25,8 +24,7 @@ end
 
 defmodule Article do
   use Ecto.Schema
-  require Commentable
-  Commentable.comment_with Comment
+  use Commentable, comment_with: Comment
 
   schema "articles" do
     field :body
@@ -42,8 +40,7 @@ end
 
 defmodule Image do
   use Ecto.Schema
-  require Commentable
-  Commentable.comment_with Comment
+  use Commentable, comment_with: Comment
 
   schema "images" do
     field :url
